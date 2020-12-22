@@ -10,6 +10,7 @@ import {
 } from './application/services/authentication';
 import { AccountService } from './application/services/account.service';
 import { UserController } from './application/controllers/user.controller';
+import { SeedingService } from './application/services/seeding.service';
 
 /**
  * Main module contain current context
@@ -26,6 +27,12 @@ import { UserController } from './application/controllers/user.controller';
     ScheduleModule.forRoot(),
   ],
   controllers: [UserController],
-  providers: [AuthService, AccountTokenService, AuthProvider, AccountService],
+  providers: [
+    AuthService,
+    AccountTokenService,
+    AuthProvider,
+    AccountService,
+    SeedingService,
+  ],
 })
 export class AppModule {}

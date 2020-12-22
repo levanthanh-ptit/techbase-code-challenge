@@ -19,7 +19,13 @@ export interface IUser {
 export interface IUserCreator
   extends Omit<IUser, 'id' | 'createdAt' | 'updatedAt'> {}
 
-@Table
+@Table({
+  indexes: [
+    {
+      fields: ['email'],
+    },
+  ],
+})
 export class User extends Model implements IUser {
   @ApiProperty()
   id!: number;

@@ -3,7 +3,10 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger/dist/document-builder';
 import { SwaggerModule } from '@nestjs/swagger/dist/swagger-module';
+
 import { AppModule } from './app.module';
+import SwaggerDocs from '../docs/swagger.docs';
+
 require('dotenv').config();
 
 async function bootstrap() {
@@ -11,8 +14,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   if (NODE_ENV !== 'production') {
     const options = new DocumentBuilder()
-      .setTitle('TechBase Code Challenge API')
-      .setVersion('1.0')
+      .setTitle(SwaggerDocs.title)
+      .setVersion(SwaggerDocs.version)
+      .setDescription(SwaggerDocs.description)
       .addBearerAuth()
       .build();
     const document = SwaggerModule.createDocument(app, options);

@@ -1,13 +1,19 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { PipeTransform, Query } from '@nestjs/common';
-import { ApiParam, ApiQuery, getSchemaPath } from '@nestjs/swagger';
+import {
+  ApiExtraModels,
+  ApiParam,
+  ApiQuery,
+  getSchemaPath,
+} from '@nestjs/swagger';
 import { ParameterStyle } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 
-export const ApiFilterWhere = (model?: string | Function): MethodDecorator => (
+export const ApiFilterWhere = (model?: Function): MethodDecorator => (
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor,
 ) => {
+  ApiExtraModels(model)(target, propertyKey, descriptor);
   return ApiQuery({
     name: 'query',
     type: 'object',
@@ -83,9 +89,7 @@ export const FilterOrder = (): ParameterDecorator => (
   return Query('order', NestedArrayPipe)(target, propertyKey, parameterIndex);
 };
 
-export const ApiFilterEnhance = (
-  model?: string | Function,
-): MethodDecorator => (
+export const ApiFilterEnhance = (model?: Function): MethodDecorator => (
   target: any,
   propertyKey: string,
   descriptor: PropertyDescriptor,
