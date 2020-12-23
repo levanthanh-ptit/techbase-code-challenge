@@ -1,0 +1,21 @@
+server {
+        listen 80;
+        server_name sub.host.com;
+        return 301 https://sub.host.com$request_uri;
+}
+
+server {
+        listen 443 ssl;
+        server_name sub.host.com;
+	ssl_certificate /etc/letsencrypt/live/sub.host.com/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/sub.host.com/privkey.pem;
+        gzip on;
+        location / {
+                proxy_pass http://localhost:3000;
+                client_max_body_size 10m;
+                proxy_set_header Host $http_host;
+                proxy_set_header X-Forwarded-Host $http_host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+}
