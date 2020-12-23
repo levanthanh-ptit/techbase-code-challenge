@@ -3,7 +3,7 @@ import { Repository } from 'sequelize-typescript';
 import { Company } from '../../domains/models/company.model';
 import { PostgresProvider } from '../providers/postgres.providers';
 
-export const CompanyRepositoryBindingKey = 'TamRepository';
+export const CompanyRepositoryBindingKey = 'CompanyRepository';
 
 export type CompanyRepository = Repository<Company>;
 

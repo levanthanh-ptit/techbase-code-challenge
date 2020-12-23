@@ -14,6 +14,8 @@ export interface IUser {
   name: string;
   role: Role;
   hashPassword: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface IUserCreator

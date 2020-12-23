@@ -29,7 +29,7 @@ export class PostgresProvider extends Sequelize implements OnModuleInit {
       repositoryMode: true,
       logging: true,
     });
-    this.addModels([User, Department, Team, TeamMember, Company]);
+    this.addModels([User, Company, Department, Team, TeamMember]);
   }
   async onModuleInit() {
     await super.sync({

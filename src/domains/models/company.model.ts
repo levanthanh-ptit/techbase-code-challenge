@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BeforeCreate, BelongsTo, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Model, Table } from 'sequelize-typescript';
 import { User } from './user.model';
 
 export interface ICompany {
@@ -7,6 +7,8 @@ export interface ICompany {
   name: string;
   directorId: number;
 }
+
+export type ICompanyCreator = Pick<ICompany, 'directorId' | 'name'>;
 
 @Table
 export class Company extends Model implements ICompany {
@@ -23,10 +25,4 @@ export class Company extends Model implements ICompany {
     foreignKey: 'directorId',
   })
   director: User;
-
-  @BeforeCreate
-  static async restrictOneCompany() {
-    if ((await Company.count()) > 0)
-      throw new Error('can_not_create_more_than_one_company');
-  }
 }

@@ -15,7 +15,7 @@ import { TeamCreator } from '../dtos/team.dtos';
 @Controller('department')
 @ApiTags('department')
 @ApiBearerAuth()
-export class TeamController {
+export class DepartmentController {
   constructor(
     @Inject(DepartmentRepositoryBindingKey)
     private departmentRepository: DepartmentRepository,

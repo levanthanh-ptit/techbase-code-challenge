@@ -12,6 +12,8 @@ import { AccountService } from './application/services/account.service';
 import { UserController } from './application/controllers/user.controller';
 import { SeedingService } from './application/services/seeding.service';
 import { TeamController } from './application/controllers/team.controller';
+import { CompanyController } from './application/controllers/company.controller';
+import { DepartmentController } from './application/controllers';
 
 /**
  * Main module contain current context
@@ -27,7 +29,12 @@ import { TeamController } from './application/controllers/team.controller';
     }),
     ScheduleModule.forRoot(),
   ],
-  controllers: [UserController, TeamController],
+  controllers: [
+    UserController,
+    CompanyController,
+    DepartmentController,
+    TeamController,
+  ],
   providers: [
     AuthService,
     AccountTokenService,
