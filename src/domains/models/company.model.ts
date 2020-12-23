@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { BeforeCreate, BelongsTo, Model } from 'sequelize-typescript';
+import { BeforeCreate, BelongsTo, Model, Table } from 'sequelize-typescript';
 import { User } from './user.model';
 
 export interface ICompany {
@@ -8,6 +8,7 @@ export interface ICompany {
   directorId: number;
 }
 
+@Table
 export class Company extends Model implements ICompany {
   @ApiProperty()
   id: number;

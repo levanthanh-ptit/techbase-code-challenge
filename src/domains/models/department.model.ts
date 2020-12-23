@@ -10,13 +10,13 @@ import {
 import { Team } from './team.model';
 import { User } from './user.model';
 
-interface IDepartment {
+export interface IDepartment {
   id: number;
   name: string;
   managerId: number;
 }
 
-interface IDepartmentCreator extends Omit<IDepartment, 'id'> {}
+export interface IDepartmentCreator extends Omit<IDepartment, 'id'> {}
 
 @Table
 export class Department extends Model implements IDepartment {

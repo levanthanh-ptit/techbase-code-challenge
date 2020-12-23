@@ -17,7 +17,7 @@ export type ITeam = {
   departmentId: number;
 };
 
-export type TeamCreator = Omit<ITeam, 'id'>;
+export type ITeamCreator = Omit<ITeam, 'id' | 'departmentId'>;
 
 @Table
 export class Team extends Model implements ITeam {

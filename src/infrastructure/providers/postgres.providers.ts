@@ -5,6 +5,7 @@ import { User } from '../../domains/models/user.model';
 import { Department } from '../../domains/models/department.model';
 import { Team } from '../../domains/models/team.model';
 import { TeamMember } from '../../domains/models/team-member';
+import { Company } from '../../domains/models/company.model';
 
 const operatorsAliases = Object.keys(Op).reduce<OperatorsAliases>(
   (accumulator, cur) => {
@@ -28,7 +29,7 @@ export class PostgresProvider extends Sequelize implements OnModuleInit {
       repositoryMode: true,
       logging: true,
     });
-    this.addModels([User, Department, Team, TeamMember]);
+    this.addModels([User, Department, Team, TeamMember, Company]);
   }
   async onModuleInit() {
     await super.sync({
