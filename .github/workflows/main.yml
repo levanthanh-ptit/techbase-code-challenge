@@ -1,0 +1,27 @@
+name: Release API
+
+on:
+  push:
+    branches: [release/staging]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.0.0
+        with:
+          cmd: build
+      - name: Releasing
+        env:
+          STAGING_HOST_IP: ${{ secrets.HOST_IP }}
+          STAGING_HOST_KEY: ${{ secrets.HOST_KEY }}
+        run: chmod +x deploy/release.sh && ./deploy/release.sh
